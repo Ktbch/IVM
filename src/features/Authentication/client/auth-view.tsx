@@ -1,5 +1,6 @@
 "use client";
 
+import FormSchema, { TFormFields } from "@/components/app/SchemaForm";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,26 +16,16 @@ import { useFormState, useFormStatus } from "react-dom";
 
 interface IProps {
 	actionFn: (state: any, data: FormData) => any;
+	fields: TFormFields[];
 }
 
 //  with this i dont think zod validation on the frontend and react-hook-form is neccasrry
-const AuthView = ({ actionFn }: IProps) => {
+
+function AuthView({ actionFn, fields }: IProps) {
 	const [state, authAction] = useActionState(actionFn, undefined);
 	const { pending } = useFormStatus();
 
-	return (
-		<form action={authAction}>
-			<div>
-				<Label htmlFor="email">Email</Label>
-				<Input type="email" name="email" />
-			</div>
-			<div>
-				<Label htmlFor="password">password</Label>
-				<Input type="password" name="password" />
-			</div>
-			<Button disabled={pending}>Submit</Button>
-		</form>
-	);
-};
+	return <FormSchema fields={fields} />;
+}
 
 export default AuthView;
