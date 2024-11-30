@@ -1,3 +1,5 @@
+"use client";
+
 import WrapLabelAndError from "../_wrapForm";
 
 interface IProps extends ISharedFormProps {}
