@@ -1,5 +1,7 @@
+import SignUpView from "@/features/Authentication/client/views/signUp/signup-view";
+
 const SignUp = () => {
-	return <div />;
+	return <SignUpView />;
 };
 
 export default SignUp;
