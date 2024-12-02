@@ -11,8 +11,6 @@ export const baseSchema = z.object({
 
 export const signUpZodSchema = baseSchema.extend({
     confirmPassword: z.string().min(8, { message: 'password must be at least charcters' }),
-    profession: z.string({ message: 'A value is Expected' }),
-    bussines_details: z.string({ message: 'A value is expected' }).min(100, { message: 'it must be more than 100 charcters' }).max(150, { message: 'limit reached' })
 }).refine((data) => data.password === data.confirmPassword, {
     message: 'passowrd does not match',
     path: [ 'confirmPassword' ]

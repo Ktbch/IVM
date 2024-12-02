@@ -20,6 +20,7 @@ interface IProps {
 
 function AuthView({ actionFn, fields }: IProps) {
 	const [state, authAction] = useActionState(actionFn, undefined);
+	console.log(state);
 
 	return <FormSchema fields={fields} formActions={authAction} state={state} />;
 }

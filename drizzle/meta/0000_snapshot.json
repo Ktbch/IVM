@@ -1,9 +1,68 @@
 {
-  "id": "1ac176d2-00cd-4be0-b3a2-05eaa5e509e8",
+  "id": "3de38026-a663-4e18-8f47-2318c57b82b2",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
+    "public.profile-table": {
+      "name": "profile-table",
+      "schema": "",
+      "columns": {
+        "profession": {
+          "name": "profession",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "bussiness_details": {
+          "name": "bussiness_details",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "userId": {
+          "name": "userId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "profile-table_userId_user-table_id_fk": {
+          "name": "profile-table_userId_user-table_id_fk",
+          "tableFrom": "profile-table",
+          "tableTo": "user-table",
+          "columnsFrom": [
+            "userId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.user-table": {
       "name": "user-table",
       "schema": "",
@@ -31,18 +90,6 @@
           "type": "boolean",
           "primaryKey": false,
           "notNull": true
-        },
-        "profession": {
-          "name": "profession",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "bussiness_details": {
-          "name": "bussiness_details",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
         },
         "created_at": {
           "name": "created_at",
