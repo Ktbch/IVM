@@ -3,6 +3,7 @@
 import FormSchema, { TFormFields } from "@/components/app/SchemaForm";
 
 import { useActionState } from "react";
+import { signUpActions } from "../server/auth-actions";
 
 // first actual design pattern i want to create a hook or mutation
 
@@ -12,7 +13,7 @@ import { useActionState } from "react";
 // }
 
 interface IProps {
-	actionFn: (state: any, data: FormData) => any;
+	actionFn: (state: any, data: FormData) => Promise<AuthFormState>;
 	fields: TFormFields[];
 }
 
@@ -20,8 +21,6 @@ interface IProps {
 
 function AuthView({ actionFn, fields }: IProps) {
 	const [state, authAction] = useActionState(actionFn, undefined);
-	console.log(state);
-
 	return <FormSchema fields={fields} formActions={authAction} state={state} />;
 }
 

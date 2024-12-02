@@ -14,6 +14,7 @@ export default function WrapLabelAndError({ ...props }: IProps) {
 				{name}
 			</Label>
 			{children}
+			{ state?.errors[ name ] && <p>{state.errors[name] }</p>}
 		</div>
 	);
 }

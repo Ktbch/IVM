@@ -8,14 +8,14 @@ import { sessionHandler } from "@/lib/auth/sessions"
 
 
 const userRepository = new UserRepository()
-export const SignInActions = async (state: any, data: FormData) => {
+export const SignInActions = async (state: AuthFormState, data: FormData) => {
     console.log(data)
     const parsedData = baseSchema.safeParse(Object.fromEntries(data))
 
     if (!parsedData.success)
     {
         return {
-            error: parsedData.error.flatten()
+            errors: parsedData.error.flatten()
         }
     }
     try
@@ -24,7 +24,7 @@ export const SignInActions = async (state: any, data: FormData) => {
 
         if (!userFound[ 0 ] || userFound[ 0 ].password !== parsedData.data.password)
         {
-            return { error: 'invalid password or email address' }
+            return { errors: { email: 'invalid password or email address' } }
         }
 
         redirect('/')
@@ -35,13 +35,13 @@ export const SignInActions = async (state: any, data: FormData) => {
     }
 }
 
-export const signUpActions = async (state: any, data: FormData) => {
+export const signUpActions = async (state: AuthFormState, data: FormData) => {
     const parsedData = signUpZodSchema.safeParse(Object.fromEntries(data))
 
     if (!parsedData.success)
     {
         return {
-            error: parsedData.error.flatten()
+            errors: parsedData.error.flatten().fieldErrors
         }
     }
     try
