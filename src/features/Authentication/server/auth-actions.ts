@@ -1,8 +1,34 @@
-'server-only'
+'use server'
+
+import { redirect } from "next/navigation"
+import { UserRepository } from "./user-repository"
+import { baseSchema } from "./user-schema"
 
 
 
-export const SignInActions = (state: any, data: FormData) => {
-    console.log(data)
-    return state
+const userRepository = new UserRepository()
+export const SignInActions = async (state: any, data: FormData) => {
+    const parsedData = baseSchema.safeParse(Object.fromEntries(data))
+
+    if (!parsedData.success)
+    {
+        return {
+            error: parsedData.error.flatten()
+        }
+    }
+    try
+    {
+        const userFound = await userRepository.loginUser(parsedData.data)
+
+        if (!userFound[ 0 ] || userFound[ 0 ].password !== parsedData.data.password)
+        {
+            return { error: 'invalid password or email address' }
+        }
+
+        redirect('/')
+    } catch (error)
+    {
+        // todo catch database errors or server error
+        console.log(error)
+    }
 }

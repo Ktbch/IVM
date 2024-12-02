@@ -1,11 +1,8 @@
 "use client";
 
 import FormSchema, { TFormFields } from "@/components/app/SchemaForm";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import { useActionState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
 
 // first actual design pattern i want to create a hook or mutation
 
@@ -23,9 +20,9 @@ interface IProps {
 
 function AuthView({ actionFn, fields }: IProps) {
 	const [state, authAction] = useActionState(actionFn, undefined);
-	const { pending } = useFormStatus();
 
-	return <FormSchema fields={fields} />;
+	console.log(state);
+	return <FormSchema fields={fields} formActions={authAction} state={state} />;
 }
 
 export default AuthView;
