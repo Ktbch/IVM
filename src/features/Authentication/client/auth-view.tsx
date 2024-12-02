@@ -3,7 +3,6 @@
 import FormSchema, { TFormFields } from "@/components/app/SchemaForm";
 
 import { useActionState } from "react";
-import { signUpActions } from "../server/auth-actions";
 
 // first actual design pattern i want to create a hook or mutation
 

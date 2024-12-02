@@ -8,8 +8,8 @@ import Loader from "../../Loader";
 export default function FormButton() {
 	const { pending } = useFormStatus();
 	return (
-		<Button disabled={pending}>
-			{pending ? <Loader /> : "Submit"}
+		<Button disabled={pending} className="">
+			{pending ? "Submiting..." : "Submit"}
 		</Button>
 	);
 }
