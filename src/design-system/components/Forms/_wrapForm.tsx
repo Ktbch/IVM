@@ -1,16 +1,19 @@
 "use client";
 
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function WrapLabelAndError({ ...props }: ISharedFormProps) {
-	const { name, state, type } = props;
+interface IProps extends Partial<ISharedFormProps> {
+	children: React.ReactNode;
+}
+
+export default function WrapLabelAndError({ ...props }: IProps) {
+	const { name, state, type, children } = props;
 	return (
 		<div className="flex flex-col gap-5 items-start">
 			<Label htmlFor={name}>
 				{name}
 			</Label>
-			<Input type={type} placeholder={name} name={name} />
+			{children}
 		</div>
 	);
 }
