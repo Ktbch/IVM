@@ -1,6 +1,7 @@
 import FormInput from "@/design-system/components/Forms/FormInput.tsx";
 import FormNumber from "@/design-system/components/Forms/FormNumber.tsx";
 import FormTelPhone from "@/design-system/components/Forms/FormTelphone";
+import FormTextArea from "@/design-system/components/Forms/FormTextArea";
 import React from "react";
 
 interface IProps extends ISharedFormProps {}
@@ -17,5 +18,7 @@ export default function RenderForm({ ...formProps }: IProps) {
 			return <FormNumber {...formProps} />;
 		case "tel":
 			return <FormTelPhone {...formProps} />;
+		case "text-area":
+			return <FormTextArea {...formProps} />;
 	}
 }

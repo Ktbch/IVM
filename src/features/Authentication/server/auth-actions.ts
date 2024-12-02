@@ -2,12 +2,13 @@
 
 import { redirect } from "next/navigation"
 import { UserRepository } from "./user-repository"
-import { baseSchema } from "./user-schema"
+import { baseSchema, signUpZodSchema } from "./user-schema"
 
 
 
 const userRepository = new UserRepository()
 export const SignInActions = async (state: any, data: FormData) => {
+    console.log(data)
     const parsedData = baseSchema.safeParse(Object.fromEntries(data))
 
     if (!parsedData.success)
@@ -31,4 +32,24 @@ export const SignInActions = async (state: any, data: FormData) => {
         // todo catch database errors or server error
         console.log(error)
     }
+}
+
+export const signUpActions = async (state: any, data: Partial<FormData>) => {
+    console.log(data)
+    // const parsedData = signUpZodSchema.safeParse(Object.fromEntries(data))
+
+    // if (!parsedData.success)
+    // {
+    //     return {
+    //         error: parsedData.error.flatten()
+    //     }
+    // }
+    // try
+    // {
+    //     await userRepository.RegisterUser(parsedData.data)
+    //     redirect('/')
+    // } catch (error)
+    // {
+    //     throw error
+    // }
 }

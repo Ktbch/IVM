@@ -1,8 +1,9 @@
 'server-only'
 import { z } from 'zod'
-import { baseSchema, userSchema } from './user-schema'
+import { baseSchema, signUpZodSchema } from './user-schema'
 import { db } from '@/lib/db'
 import { eq } from 'drizzle-orm'
+import { userSchema } from '@/lib/db/schemas'
 
 
 
@@ -13,8 +14,7 @@ export class UserRepository {
         const userFound = await db.select().from(userSchema).where(eq(userSchema.email, userDetails.email))
         return userFound
     }
-    // async RegisterUser (userDetails: z.infer<typeof baseSchema>) {
-    //     const newUser = db.insert(userSchema).values({})
-    //     return userFound
-    // }
+    async RegisterUser (userDetails: Omit<z.infer<typeof signUpZodSchema>, "confirmPassword">) {
+        await db.insert(userSchema).values({ ...userDetails, is_admin: true })
+    }
 }

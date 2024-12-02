@@ -1,7 +1,7 @@
-import { boolean, integer, pgTable, PgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { boolean, integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 
 export const userSchema = pgTable('user-table', {
-    id: integer('id').primaryKey().notNull(),
+    id: serial('id').primaryKey().notNull(),
     email: text('email').unique().notNull(),
     password: text('password').notNull(),
     is_admin: boolean('is_admin').notNull(),
