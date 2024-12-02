@@ -15,6 +15,7 @@ export class UserRepository {
         return userFound
     }
     async RegisterUser (userDetails: Omit<z.infer<typeof signUpZodSchema>, "confirmPassword">) {
-        await db.insert(userSchema).values({ ...userDetails, is_admin: true })
+        const userFound = await db.insert(userSchema).values({ ...userDetails, is_admin: true }).returning()
+        return userFound[ 0 ].id
     }
 }

@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation"
 import { UserRepository } from "./user-repository"
 import { baseSchema, signUpZodSchema } from "./user-schema"
+import { sessionHandler } from "@/lib/auth/sessions"
 
 
 
@@ -45,7 +46,8 @@ export const signUpActions = async (state: any, data: FormData) => {
     }
     try
     {
-        await userRepository.RegisterUser(parsedData.data)
+        const userId = await userRepository.RegisterUser(parsedData.data)
+        await sessionHandler.createSession(userId.toString())
         redirect('/')
     } catch (error)
     {
