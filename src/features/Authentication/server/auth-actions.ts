@@ -34,22 +34,21 @@ export const SignInActions = async (state: any, data: FormData) => {
     }
 }
 
-export const signUpActions = async (state: any, data: Partial<FormData>) => {
-    console.log(data)
-    // const parsedData = signUpZodSchema.safeParse(Object.fromEntries(data))
+export const signUpActions = async (state: any, data: FormData) => {
+    const parsedData = signUpZodSchema.safeParse(Object.fromEntries(data))
 
-    // if (!parsedData.success)
-    // {
-    //     return {
-    //         error: parsedData.error.flatten()
-    //     }
-    // }
-    // try
-    // {
-    //     await userRepository.RegisterUser(parsedData.data)
-    //     redirect('/')
-    // } catch (error)
-    // {
-    //     throw error
-    // }
+    if (!parsedData.success)
+    {
+        return {
+            error: parsedData.error.flatten()
+        }
+    }
+    try
+    {
+        await userRepository.RegisterUser(parsedData.data)
+        redirect('/')
+    } catch (error)
+    {
+        throw error
+    }
 }
