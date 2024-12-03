@@ -14,7 +14,7 @@ interface IProps extends Partial<ISharedFormProps> {
 export default function FormSchema({ ...formProps }: IProps) {
 	const { fields, state, formActions } = formProps;
 	return (
-		<form action={formActions}>
+		<form action={formActions} className="flex flex-col items-start gap-5">
 			{fields.map((field, index) =>
 				<RenderForm
 					key={index}

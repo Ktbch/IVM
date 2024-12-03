@@ -1,9 +1,11 @@
+import { Card } from "@/components/ui/card";
+
 const layout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<div className="absolute top-[25%] left-[39%] ">
-			<div className="border p-5">
+		<div className="absolute top-[15%] left-[39%] ">
+			<Card className="flex flex-col items-center  gap-2">
 				{children}
-			</div>
+			</Card>
 		</div>
 	);
 };

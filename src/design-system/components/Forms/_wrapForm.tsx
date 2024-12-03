@@ -9,12 +9,12 @@ interface IProps extends Partial<ISharedFormProps> {
 export default function WrapLabelAndError({ ...props }: IProps) {
 	const { name, state, type, children } = props;
 	return (
-		<div className="flex flex-col gap-5 items-start">
+		<div className="flex flex-col gap-2 items-start">
 			<Label htmlFor={name}>
 				{name}
 			</Label>
-			{children}
-			{ state?.errors[ name ] && <p>{state.errors[name] }</p>}
+				{ children }
+					{ state?.errors[ name ] && <p className="text-xs text-destructive">{state.errors[name] }</p>}
 		</div>
 	);
 }

@@ -5,8 +5,8 @@ import { AuthActionHandler } from "@/features/Authentication/server/auth-actions
 
 const SignUp = () => {
 	return (
-		<AuthLayouts title="SIGNUP">
-			<SignUpView actionFn={AuthActionHandler.signUpActions} />;
+		<AuthLayouts title="signup">
+			<SignUpView actionFn={AuthActionHandler.signUpActions} />
 		</AuthLayouts>
 	);
 };
