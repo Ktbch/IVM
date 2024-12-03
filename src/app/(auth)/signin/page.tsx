@@ -1,11 +1,9 @@
 "use server";
 
-import AuthView from "@/features/Authentication/client/auth-view";
 import SignInView from "@/features/Authentication/client/views/signin-view";
-import React from "react";
-
+import { AuthActionHandler } from "@/features/Authentication/server/auth-actions";
 const SignIn = () => {
-	return <SignInView />;
+	return <SignInView actionFn={AuthActionHandler.signInActions} />;
 };
 
 export default SignIn;

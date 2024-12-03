@@ -1,10 +1,6 @@
 "use client";
-
-import React from "react";
-import AuthView from "../auth-view";
-import { SignInActions, signUpActions } from "../../server/auth-actions";
+import React, { useActionState } from "react";
 import FormSchema, { TFormFields } from "@/components/app/SchemaForm";
-import { useRouter } from "next/navigation";
 
 const SIGNUP_FIELDS_CONFIG: TFormFields[] = [
 	{
@@ -21,8 +17,19 @@ const SIGNUP_FIELDS_CONFIG: TFormFields[] = [
 	}
 ];
 
-const SignUpView = () => {
-	return <AuthView actionFn={signUpActions} fields={SIGNUP_FIELDS_CONFIG} />;
+interface IProps {
+	actionFn: (state: any, data: FormData) => Promise<AuthFormState>;
+}
+const SignUpView = ({ actionFn }: IProps) => {
+	const [state, authAction] = useActionState(actionFn, undefined);
+
+	return (
+		<FormSchema
+			fields={SIGNUP_FIELDS_CONFIG}
+			formActions={authAction}
+			state={state}
+		/>
+	);
 };
 
 export default SignUpView;

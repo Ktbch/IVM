@@ -1,4 +1,4 @@
-'server-only'
+import 'server-only'
 import { z } from 'zod'
 import { baseSchema, signUpZodSchema } from './user-schema'
 import { db } from '@/lib/db'

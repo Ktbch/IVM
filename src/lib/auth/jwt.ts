@@ -9,7 +9,7 @@ const JWT_SECRET = 'IVMNEN'
 
 export const jwtTokenHandler = {
     signJwtToken (payload: string) {
-        return jwt.sign(payload, JWT_SECRET, { algorithm: "ES256", expiresIn: '1d' })
+        return jwt.sign(payload, JWT_SECRET)
     },
     verifyJwtToken (token: string) {
         return jwt.verify(token, JWT_SECRET)
