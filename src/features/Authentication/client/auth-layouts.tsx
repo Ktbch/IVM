@@ -5,6 +5,7 @@ import {
 	CardHeader,
 	CardTitle
 } from "@/components/ui/card";
+import { NAVIGATION_LINKS } from "@/shared/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -17,13 +18,13 @@ export const AuthLinks = () => {
 	const pathName = usePathname();
 	if (pathName === "/signin") {
 		return (
-			<Link href={`/signup`} className="text-sm  tracking-wide font-bold">
+			<Link href={NAVIGATION_LINKS.authPageLinks.signUp} className="text-sm  tracking-wide font-bold">
 				I don't have an account
 			</Link>
 		);
 	}
 	return (
-		<Link href={`/signin`} className="text-sm tracking-wide font-bold">
+		<Link href={NAVIGATION_LINKS.authPageLinks.signIn} className="text-sm tracking-wide font-bold">
 			I already have an account
 		</Link>
 	);

@@ -5,6 +5,7 @@ import { UserRepository } from "./user-repository"
 import { baseSchema, signUpZodSchema } from "./user-schema"
 import { sessionHandler } from "@/lib/auth/sessions"
 import { passwordEncryptionHandler } from "@/lib/auth/passwordEncrypt"
+import { NAVIGATION_LINKS } from '@/shared/constants'
 
 
 
@@ -33,7 +34,7 @@ export const AuthActionHandler = {
             {
                 return { errors: { email: [ 'invalid password or email address' ] } }
             }
-            redirect('/dashboard')
+            redirect(NAVIGATION_LINKS.redirectLinks.dashbaord)
         } catch (error)
         {
             // todo catch database errors or server error
@@ -55,7 +56,7 @@ export const AuthActionHandler = {
             const hashPassword = await passwordEncryptionHandler.hashPassword(parsedData.data.password)
             const userId = await userRepository.RegisterUser({ ...parsedData.data, password: hashPassword })
             await sessionHandler.createSession(userId.toString())
-            redirect('/dashboard')
+            redirect(NAVIGATION_LINKS.redirectLinks.dashbaord)
         } catch (error)
         {
             throw error
