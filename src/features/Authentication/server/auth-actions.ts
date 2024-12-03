@@ -9,6 +9,7 @@ import { passwordEncryptionHandler } from "@/lib/auth/passwordEncrypt"
 
 
 const userRepository = new UserRepository()
+
 export const SignInActions = async (state: AuthFormState, data: FormData) => {
     const parsedData = baseSchema.safeParse(Object.fromEntries(data))
 
@@ -21,12 +22,11 @@ export const SignInActions = async (state: AuthFormState, data: FormData) => {
     try
     {
         const userFound = await userRepository.loginUser(parsedData.data)
-
-        if (!userFound[ 0 ] || userFound[ 0 ].password !== parsedData.data.password)
+        // refactor this later
+        if (!userFound[ 0 ] || !await passwordEncryptionHandler.comparePassword(parsedData.data.password, userFound[ 0 ].password))
         {
             return { errors: { email: 'invalid password or email address' } }
         }
-
         redirect('/')
     } catch (error)
     {
