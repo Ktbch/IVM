@@ -4,6 +4,7 @@ import { redirect } from "next/navigation"
 import { UserRepository } from "./user-repository"
 import { baseSchema, signUpZodSchema } from "./user-schema"
 import { sessionHandler } from "@/lib/auth/sessions"
+import { passwordEncryptionHandler } from "@/lib/auth/passwordEncrypt"
 
 
 
@@ -45,7 +46,8 @@ export const signUpActions = async (state: AuthFormState, data: FormData) => {
     }
     try
     {
-        const userId = await userRepository.RegisterUser(parsedData.data)
+        const hashPassword = await passwordEncryptionHandler.encryptPassword(parsedData.data.password)
+        const userId = await userRepository.RegisterUser({ ...parsedData.data, password: hashPassword })
         await sessionHandler.createSession(userId.toString())
         redirect('/')
     } catch (error)
