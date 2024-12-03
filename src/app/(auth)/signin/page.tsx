@@ -1,9 +1,14 @@
 "use server";
 
+import AuthLayouts from "@/features/Authentication/client/auth-layouts";
 import SignInView from "@/features/Authentication/client/views/signin-view";
 import { AuthActionHandler } from "@/features/Authentication/server/auth-actions";
 const SignIn = () => {
-	return <SignInView actionFn={AuthActionHandler.signInActions} />;
+	return (
+		<AuthLayouts title="SIGNIN">
+			<SignInView actionFn={AuthActionHandler.signInActions} />
+		</AuthLayouts>
+	);
 };
 
 export default SignIn;
