@@ -46,7 +46,7 @@ export const signUpActions = async (state: AuthFormState, data: FormData) => {
     }
     try
     {
-        const hashPassword = await passwordEncryptionHandler.encryptPassword(parsedData.data.password)
+        const hashPassword = await passwordEncryptionHandler.hashPassword(parsedData.data.password)
         const userId = await userRepository.RegisterUser({ ...parsedData.data, password: hashPassword })
         await sessionHandler.createSession(userId.toString())
         redirect('/')

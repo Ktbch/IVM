@@ -1,7 +1,7 @@
 import { compare, hash } from 'bcrypt-ts'
 
 export const passwordEncryptionHandler = {
-    async encryptPassword (password: string, salt = 10) {
+    async hashPassword (password: string, salt = 10) {
         return await hash(password, salt)
     },
     async comparePassword (password: string, hashedPassword: string,) {
