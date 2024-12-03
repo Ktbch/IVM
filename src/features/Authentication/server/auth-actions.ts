@@ -34,6 +34,7 @@ export const AuthActionHandler = {
             {
                 return { errors: { email: [ 'invalid password or email address' ] } }
             }
+            await sessionHandler.createSession(userFound[ 0 ].id.toString())
             redirect(NAVIGATION_LINKS.redirectLinks.dashbaord)
         } catch (error)
         {
@@ -55,7 +56,7 @@ export const AuthActionHandler = {
         {
             const hashPassword = await passwordEncryptionHandler.hashPassword(parsedData.data.password)
             const userId = await userRepository.RegisterUser({ ...parsedData.data, password: hashPassword })
-            await sessionHandler.createSession(userId.toString())
+            // await sessionHandler.createSession(userId.toString())
             redirect(NAVIGATION_LINKS.redirectLinks.dashbaord)
         } catch (error)
         {

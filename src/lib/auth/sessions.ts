@@ -7,6 +7,11 @@ import { jwtTokenHandler } from "./jwt"
 
 const COOKIE_KEY = 'accessToken' as const
 
+export type TSession = {
+    name: string;
+    value: string;
+} | undefined
+
 export const sessionHandler = {
     async createSession (payload: string) {
         const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
@@ -16,8 +21,8 @@ export const sessionHandler = {
     },
     async getSession () {
         const cookie = await cookies()
-        const token = cookie.get(COOKIE_KEY)
-        // const userId = jwtTokenHandler.verifyJwtToken(token!)
+        const token: TSession = cookie.get(COOKIE_KEY)
+        return token
     },
     async deleteSession () {
         (await cookies()).delete(COOKIE_KEY)
