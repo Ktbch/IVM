@@ -9,13 +9,12 @@ import { sessionHandler } from "@/lib/auth/sessions"
 
 const userRepository = new UserRepository()
 export const SignInActions = async (state: AuthFormState, data: FormData) => {
-    console.log(data)
     const parsedData = baseSchema.safeParse(Object.fromEntries(data))
 
     if (!parsedData.success)
     {
         return {
-            errors: parsedData.error.flatten()
+            errors: parsedData.error.flatten().fieldErrors
         }
     }
     try
