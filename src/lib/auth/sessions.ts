@@ -24,6 +24,11 @@ export const sessionHandler = {
         const token: TSession = cookie.get(COOKIE_KEY)
         return token
     },
+    async decryptToken () {
+        const token = await this.getSession()
+        return jwtTokenHandler.verifyJwtToken(token?.value)
+
+    },
     async deleteSession () {
         (await cookies()).delete(COOKIE_KEY)
     }

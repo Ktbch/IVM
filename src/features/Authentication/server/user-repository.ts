@@ -20,5 +20,6 @@ export class UserRepository {
     }
     async findUserById (id: number) {
         const userFound = await db.select({ id: userSchema.id, email: userSchema.email, is_admin: userSchema.is_admin }).from(userSchema).where(eq(userSchema.id, id))
+        return userFound[ 0 ]
     }
 }
