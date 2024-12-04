@@ -2,7 +2,7 @@ import 'server-only'
 
 import { redirect } from "next/navigation"
 import { UserRepository } from "./user-repository"
-import { baseSchema, signUpZodSchema } from "./user-schema"
+import { baseSchema, signUpZodSchema } from "./user-zod-schema"
 import { sessionHandler } from "@/lib/auth/sessions"
 import { passwordEncryptionHandler } from "@/lib/auth/passwordEncrypt"
 import { NAVIGATION_LINKS } from '@/shared/constants'

@@ -1,6 +1,6 @@
 import 'server-only'
 import { z } from 'zod'
-import { baseSchema, signUpZodSchema } from './user-schema'
+import { baseSchema, signUpZodSchema } from './user-zod-schema'
 import { db } from '@/lib/db'
 import { eq } from 'drizzle-orm'
 import { userSchema } from '@/lib/db/schemas'

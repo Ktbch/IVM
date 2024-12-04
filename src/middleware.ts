@@ -3,7 +3,6 @@ import { sessionHandler, TSession } from "./lib/auth/sessions"
 import { NAVIGATION_LINKS } from "./shared/constants"
 
 
-const BASE_URL = 'http://localhost:3000/'
 
 
 
