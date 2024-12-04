@@ -18,7 +18,10 @@ const SIGNUP_FIELDS_CONFIG: TFormFields[] = [
 ];
 
 interface IProps {
-	actionFn: (state: any, data: FormData) => Promise<AuthFormState>;
+	actionFn: (
+		state: AuthFormState | undefined,
+		data: FormData
+	) => Promise<AuthFormState>;
 }
 const SignUpView = ({ actionFn }: IProps) => {
 	const [state, authAction] = useActionState(actionFn, undefined);

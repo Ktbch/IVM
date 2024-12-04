@@ -18,13 +18,13 @@ export const AuthLinks = () => {
 	const pathName = usePathname();
 	if (pathName === "/signin") {
 		return (
-			<Link href={NAVIGATION_LINKS.authPageLinks.signUp} className="text-sm  tracking-wide font-bold">
-				I don't have an account
+			<Link href={NAVIGATION_LINKS.authPageLinks.signUp} className="text-sm text-slate-700  tracking-wide font-bold">
+				I dont have an account
 			</Link>
 		);
 	}
 	return (
-		<Link href={NAVIGATION_LINKS.authPageLinks.signIn} className="text-sm tracking-wide font-bold">
+		<Link href={NAVIGATION_LINKS.authPageLinks.signIn} className="text-sm text-slate-700 tracking-wide font-bold">
 			I already have an account
 		</Link>
 	);

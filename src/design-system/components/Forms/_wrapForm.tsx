@@ -7,7 +7,7 @@ interface IProps extends Partial<ISharedFormProps> {
 }
 
 export default function WrapLabelAndError({ ...props }: IProps) {
-	const { name, state, type, children } = props;
+	const { name, state,  children } = props;
 	return (
 		<div className="flex flex-col gap-2 items-start">
 			<Label htmlFor={name}>

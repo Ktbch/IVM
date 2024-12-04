@@ -16,7 +16,7 @@ const userRepository = new UserRepository()
 
 // refactor this later
 export const AuthActionHandler = {
-    signInActions: async (state: AuthFormState, data: FormData): Promise<AuthFormState> => {
+    signInActions: async (state: AuthFormState | undefined, data: FormData): Promise<AuthFormState> => {
         'use server'
         const parsedData = baseSchema.safeParse(Object.fromEntries(data))
 
@@ -42,7 +42,7 @@ export const AuthActionHandler = {
             throw error
         }
     },
-    signUpActions: async (state: AuthFormState, data: FormData): Promise<AuthFormState> => {
+    signUpActions: async (state: AuthFormState | undefined, data: FormData): Promise<AuthFormState> => {
         'use server'
         const parsedData = signUpZodSchema.safeParse(Object.fromEntries(data))
 
@@ -56,7 +56,7 @@ export const AuthActionHandler = {
         {
             const hashPassword = await passwordEncryptionHandler.hashPassword(parsedData.data.password)
             const userId = await userRepository.RegisterUser({ ...parsedData.data, password: hashPassword })
-            // await sessionHandler.createSession(userId.toString())
+            await sessionHandler.createSession(userId.toString())
             redirect(NAVIGATION_LINKS.redirectLinks.dashbaord)
         } catch (error)
         {

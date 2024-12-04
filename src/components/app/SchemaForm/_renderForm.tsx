@@ -4,9 +4,9 @@ import FormTelPhone from "@/design-system/components/Forms/FormTelphone";
 import FormTextArea from "@/design-system/components/Forms/FormTextArea";
 import React from "react";
 
-interface IProps extends ISharedFormProps {}
+// interface IProps extends ISharedFormProps {}
 
-export default function RenderForm({ ...formProps }: IProps) {
+export default function RenderForm({ ...formProps }: ISharedFormProps) {
 	const { type } = formProps;
 
 	switch (type) {

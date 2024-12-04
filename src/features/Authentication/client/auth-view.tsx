@@ -12,7 +12,10 @@ import { useActionState } from "react";
 // }
 
 interface IProps {
-	actionFn: (state: any, data: FormData) => Promise<AuthFormState>;
+	actionFn: (
+		state: AuthFormState | undefined,
+		data: FormData
+	) => Promise<AuthFormState>;
 	fields: TFormFields[];
 }
 
