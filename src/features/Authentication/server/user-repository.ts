@@ -18,4 +18,7 @@ export class UserRepository {
         const userFound = await db.insert(userSchema).values({ ...userDetails, is_admin: true }).returning()
         return userFound[ 0 ].id
     }
+    async findUserById (id: number) {
+        const userFound = await db.select({ id: userSchema.id, email: userSchema.email, is_admin: userSchema.is_admin }).from(userSchema).where(eq(userSchema.id, id))
+    }
 }
